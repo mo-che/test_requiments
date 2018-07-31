@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+		{% block content %}
+		<h1>Persons</h1>
+		<div class="container-fluid"> 
+			<form method="GET" action=''>
+				<input type='text' name='q' placeholder="Search posts" value = {{ request.GET.q }}>
+				<input type='submit' value="Search">
+			</form>
+			<div class="row">
+				<div class="col-md-12" >
+					{% for p in object_list %}
+						<a href="/person/{{p.pk}}" class="thumbnail">
+							<p><img src = {{ p.image.url }} width="200px" height="200px"></p>
+							<p>name: {{ p.name }}</p>
+							<p>description : {{ p.description }}</p>
+						</a>
+						
+					{% empty %}
+						<div class="jumbotron">
+						<h1>No person yet!</h1>  
+						  </div>
+					{% endfor %}
+				</div>	
+			</div>
+		</div>
+		{% endblock %}
+	
+</body>
+</html>
+
